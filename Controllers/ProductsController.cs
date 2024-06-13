@@ -54,7 +54,7 @@ namespace TemplateMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Description,ImageUrl,Price,Id,CreatedAt,UpdatedAt,IsDeleted,CreatedBy,UpdatedBy")] Product product)
+        public async Task<IActionResult> Create([Bind("Name,Description,ImageUrl,Price,Id")] Product product)
         {
             if (ModelState.IsValid)
             {
