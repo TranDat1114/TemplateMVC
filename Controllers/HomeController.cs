@@ -1,17 +1,16 @@
 using System.Diagnostics;
+
 using Microsoft.AspNetCore.Mvc;
+
+using TemplateMVC.Core.Interface;
 using TemplateMVC.Models;
 
 namespace TemplateMVC.Controllers;
 
-public class HomeController : Controller
+public class HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork) : Controller
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
-    {
-        _logger = logger;
-    }
+    private readonly ILogger<HomeController> _logger = logger;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
     public IActionResult Index()
     {
