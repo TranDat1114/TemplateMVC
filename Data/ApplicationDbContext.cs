@@ -68,11 +68,10 @@ namespace TemplateMVC.Data
                 {
                     if (entry.State == EntityState.Added)
                     {
-
-                        if (string.IsNullOrEmpty(entity.Guid))
-                        {
-                            entity.Guid = Guid.NewGuid().ToString();
-                        }
+                        //if (string.IsNullOrEmpty(entity.Guid))
+                        //{
+                        //    entity.Guid = Guid.NewGuid().ToString();
+                        //}
                         entity.CreatedAt = Now;
                         entity.CreatedBy = currentUser;
                         entity.IsDeleted = false;

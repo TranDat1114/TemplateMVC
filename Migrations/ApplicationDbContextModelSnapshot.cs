@@ -24,8 +24,11 @@ namespace TemplateMVC.Migrations
 
             modelBuilder.Entity("TemplateMVC.Models.Product", b =>
                 {
-                    b.Property<string>("Guid")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -57,7 +60,7 @@ namespace TemplateMVC.Migrations
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Guid");
+                    b.HasKey("Id");
 
                     b.ToTable("Products");
                 });

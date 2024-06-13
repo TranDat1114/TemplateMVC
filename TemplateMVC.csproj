@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TemplateMVC.Core\TemplateMVC.Core.csproj" />
+    <ProjectReference Include="..\Template.Core\Template.MVC.Core.csproj" />
   </ItemGroup>
 
 </Project>

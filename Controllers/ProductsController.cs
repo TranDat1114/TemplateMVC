@@ -26,7 +26,7 @@ namespace TemplateMVC.Controllers
         }
 
         // GET: Products/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -34,7 +34,7 @@ namespace TemplateMVC.Controllers
             }
 
             var product = await _context.Products
-                .FirstOrDefaultAsync(m => m.Guid == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
             {
                 return NotFound();
@@ -54,7 +54,7 @@ namespace TemplateMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Description,ImageUrl,Price,Guid,CreatedAt,UpdatedAt,IsDeleted,CreatedBy,UpdatedBy")] Product product)
+        public async Task<IActionResult> Create([Bind("Name,Description,ImageUrl,Price,Id,CreatedAt,UpdatedAt,IsDeleted,CreatedBy,UpdatedBy")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +66,7 @@ namespace TemplateMVC.Controllers
         }
 
         // GET: Products/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -86,9 +86,9 @@ namespace TemplateMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Name,Description,ImageUrl,Price,Guid,CreatedAt,UpdatedAt,IsDeleted,CreatedBy,UpdatedBy")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("Name,Description,ImageUrl,Price,Id,CreatedAt,UpdatedAt,IsDeleted,CreatedBy,UpdatedBy")] Product product)
         {
-            if (id != product.Guid)
+            if (id != product.Id)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace TemplateMVC.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProductExists(product.Guid))
+                    if (!ProductExists(product.Id))
                     {
                         return NotFound();
                     }
@@ -117,7 +117,7 @@ namespace TemplateMVC.Controllers
         }
 
         // GET: Products/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -125,7 +125,7 @@ namespace TemplateMVC.Controllers
             }
 
             var product = await _context.Products
-                .FirstOrDefaultAsync(m => m.Guid == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
             {
                 return NotFound();
@@ -137,7 +137,7 @@ namespace TemplateMVC.Controllers
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var product = await _context.Products.FindAsync(id);
             if (product != null)
@@ -149,9 +149,9 @@ namespace TemplateMVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ProductExists(string id)
+        private bool ProductExists(int id)
         {
-            return _context.Products.Any(e => e.Guid == id);
+            return _context.Products.Any(e => e.Id == id);
         }
     }
 }
